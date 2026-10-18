@@ -10,20 +10,20 @@ public class FilmNow {
 
     private static final int TAMANHO = 100;
 
-    private String[] filmes; //uma representacao simploria da lista de filmes
+    private Filme[] filmes; //uma representacao simploria da lista de filmes
 
     /**
      * Cria o FilmNow.
      */
     public FilmNow() {
-        this.filmes = new String[TAMANHO];
+        this.filmes = new Filme[TAMANHO];
     }
 
     /**
      * Acessa a lista de filmes mantida.
      * @return O array de filmes.
      */
-    public String[] getFilmes() {
+    public Filme[] getFilmes() {
         return this.filmes.clone();
     }
 
@@ -32,7 +32,7 @@ public class FilmNow {
      * @param posicao Posição do filme no sistema.
      * @return Dados do filme. Null se não há filme na posição.
      */
-    public String getFilme(int posicao) {
+    public Filme getFilme(int posicao) {
         return filmes[posicao];
     }
 
@@ -43,8 +43,22 @@ public class FilmNow {
      * @param ano Ano de lançamento do filme.
      * @param local Local onde o filme pode ser assitido.
      */
-    public void cadastraFilme(int posicao, String nome, String ano, String local) {
-        this.filmes[posicao] = nome;
+    public String cadastraFilme(int posicao, String nome, String ano, String local) {
+        if(posicao > TAMANHO){
+            return "POSIÇÃO INVALIDA";
+        }
+
+        if(nome.equals("") || ano.equals("") || local.equals("")){
+            return "FILME INVÁLIDO";
+        }
+        Filme novoFilme = new Filme(nome, ano, local);
+        for (int i = 0; i < TAMANHO; i++){
+            if(filmes[i].equals(novoFilme)){
+                return "FILME JA ADICIONADO";
+            }
+        }
+        this.filmes[posicao] = novoFilme;
+        return "FILME ADICIONADO";
     }
 
 }
