@@ -80,10 +80,10 @@ public class MainFilmNow {
                 exibeHot(fn);
                 break;
             case "H":
-                atribuiHOT(fn, scanner);
+                atribuiHot(fn, scanner);
                 break;
             case "R":
-                removeHOT(fn, scanner);
+                removeHot(fn, scanner);
                 break;
             case "S":
                 sai();
@@ -159,7 +159,7 @@ public class MainFilmNow {
         }
     }
 
-    private static void atribuiHOT(FilmNow fn, Scanner scanner){
+    private static void atribuiHot(FilmNow fn, Scanner scanner){
         System.out.print("\nFilme> ");
         int filme = scanner.nextInt();
         System.out.print("\nPosicao> ");
@@ -168,7 +168,7 @@ public class MainFilmNow {
         System.out.println(fn.cadastraHOT(filme, posicao));
     }
 
-    private static void removeHOT(FilmNow fn, Scanner scanner){
+    private static void removeHot(FilmNow fn, Scanner scanner){
         System.out.print("\nPosicao> ");
         int posicao = scanner.nextInt();
         fn.removeHot(posicao);

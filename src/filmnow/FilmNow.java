@@ -1,5 +1,7 @@
 package filmnow;
 
+import java.lang.classfile.instruction.TableSwitchInstruction;
+
 /**
  * Sistema que mantém os seus filmes prediletos. Podem existir 100 filmes.
  *
@@ -76,6 +78,13 @@ public class FilmNow {
 
         if(nome.equals("") || ano.equals("") || local.equals("")){
             return "FILME INVÁLIDO";
+        }
+        if (filmes[posicao] != null){
+            for(int i = 0; i < TAMHOT; i ++){
+                if(filmes[posicao].equals(hotList[i])){
+                    this.removeHot(i + 1);
+                }
+            }
         }
         Filme novoFilme = new Filme(nome, ano, local);
         for (int i = 0; i < TAMANHO; i++){
