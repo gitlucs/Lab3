@@ -49,6 +49,9 @@ public class MainFilmNow {
                         "(A)Adicionar filme\n" +
                         "(M)Mostrar todos\n" +
                         "(D)Detalhar filme\n" +
+                        "(E)Exibir HotList\n" +
+                        "(H)Atribuir Hot\n" +
+                        "(R)Remover Hot\n" +
                         "(S)air\n" +
                         "\n" +
                         "Opção> ");
@@ -73,6 +76,15 @@ public class MainFilmNow {
             case "D":
                 detalharFilme(fn, scanner);
                 break;
+            case "E":
+                exibeHot(fn);
+                break;
+            case "H":
+                atribuiHOT(fn, scanner);
+                break;
+            case "R":
+                removeHOT(fn, scanner);
+                break;
             case "S":
                 sai();
                 break;
@@ -91,7 +103,7 @@ public class MainFilmNow {
         Filme[] filmes = fn.getFilmes();
         for (int i = 0; i < filmes.length; i++) {
             if (filmes[i] != null) {
-                System.out.println(formataFilme(i, filmes[i]));
+                System.out.println(formataFilme(i + 1, filmes[i]));
             }
         }
     }
@@ -135,16 +147,39 @@ public class MainFilmNow {
         String ano = scanner.next();
         System.out.print("\nLocal> ");
         String local = scanner.next();
-        fn.cadastraFilme(posicao, nome, ano, local);
+        System.out.println(fn.cadastraFilme(posicao, nome, ano, local));
     }
 
+    private static void exibeHot(FilmNow fn) {
+        Filme[] filmes = fn.getHot();
+        for (int i = 0; i < filmes.length; i++) {
+            if (filmes[i] != null) {
+                System.out.println(formataFilme(i + 1, filmes[i]));
+            }
+        }
+    }
+
+    private static void atribuiHOT(FilmNow fn, Scanner scanner){
+        System.out.print("\nFilme> ");
+        int filme = scanner.nextInt();
+        System.out.print("\nPosicao> ");
+        int posicao = scanner.nextInt();
+
+        System.out.println(fn.cadastraHOT(filme, posicao));
+    }
+
+    private static void removeHOT(FilmNow fn, Scanner scanner){
+        System.out.print("\nPosicao> ");
+        int posicao = scanner.nextInt();
+        fn.removeHot(posicao);
+    }
     /**
      * Sai da aplicação.
      */
-    private static void sai() {
+     private static void sai(){
         System.out.println("\nVlw flw o/");
         System.exit(0);
-    }
+     }
 
     /**
      * Lê carga de filmes de um arquivo csv.

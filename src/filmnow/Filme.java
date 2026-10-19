@@ -6,11 +6,13 @@ public class Filme {
     private String nome;
     private String lancamento;
     private String local;
+    private boolean ehHot;
 
     public Filme(String nome, String lancamento, String local) {
         this.nome = nome;
         this.lancamento = lancamento;
         this.local = local;
+        this.ehHot = false;
     }
 
     public String getNome() {
@@ -25,6 +27,14 @@ public class Filme {
     public int hashCode() {
         return Objects.hash(nome, lancamento);
 
+    }
+
+    public void virouHot(){
+        this.ehHot = true;
+    }
+
+    public void removeuHot(){
+        this.ehHot = false;
     }
 
     @Override
@@ -46,6 +56,10 @@ public class Filme {
 
     @Override
     public String toString(){
-        return this.nome + ", " + this.lancamento + "\n" + this.local;
+        String saida = "";
+        if(this.ehHot){
+            saida += "🔥";
+        }
+        return saida + this.nome + ", " + this.lancamento + "\n" + this.local;
     }
 }

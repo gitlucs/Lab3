@@ -9,14 +9,17 @@ package filmnow;
 public class FilmNow {
 
     private static final int TAMANHO = 100;
+    private static final int TAMHOT = 20;
 
-    private Filme[] filmes; //uma representacao simploria da lista de filmes
+    private Filme[] filmes;
+    private Filme[] hotList;
 
     /**
      * Cria o FilmNow.
      */
     public FilmNow() {
         this.filmes = new Filme[TAMANHO];
+        this.hotList = new Filme[TAMHOT];
     }
 
     /**
@@ -36,6 +39,29 @@ public class FilmNow {
         return filmes[posicao];
     }
 
+    public Filme[] getHot(){
+        return this.hotList;
+    }
+    public void removeHot(int posicao){
+        this.hotList[posicao - 1].removeuHot();
+        this.hotList[posicao - 1] = null;
+    }
+
+    public String cadastraHOT(int posicaoPrincipal, int posListaHot){
+        if(posListaHot > TAMHOT){
+            return "POSIÇÃO INVALIDA PARA HOTLIST";
+        }
+
+        for(int i = 0; i < TAMHOT; i ++){
+            if(filmes[posicaoPrincipal - 1].equals(hotList[i])){
+                return "FILME JÁ EXISTE NA HOTLIST";
+            }
+        }
+        this.hotList[posListaHot - 1] = this.filmes[posicaoPrincipal - 1];
+        this.filmes[posicaoPrincipal].virouHot();
+        return "ADICIONADO Á HOTLIST NA POSIÇÃO " + posListaHot + "!";
+    }
+
     /**
      * Adiciona um filme em uma posição. Se já existir filme na posição, sobrescreve o anterior.
      * @param posicao Posição do filme.
@@ -53,11 +79,11 @@ public class FilmNow {
         }
         Filme novoFilme = new Filme(nome, ano, local);
         for (int i = 0; i < TAMANHO; i++){
-            if(filmes[i].equals(novoFilme)){
+            if(novoFilme.equals(filmes[i])){
                 return "FILME JA ADICIONADO";
             }
         }
-        this.filmes[posicao] = novoFilme;
+        this.filmes[posicao - 1]= novoFilme;
         return "FILME ADICIONADO";
     }
 
