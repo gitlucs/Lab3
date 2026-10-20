@@ -42,7 +42,6 @@ public class MainFilmNow {
      * @param scanner Para captura da opção do usuário/a.
      * @return O comando escolhido.
      */
-
     private static String menu(Scanner scanner) {
         System.out.println(
                 "\n---\nMENU\n" +
@@ -150,6 +149,11 @@ public class MainFilmNow {
         System.out.println(fn.cadastraFilme(posicao, nome, ano, local));
     }
 
+    /**
+     * Imprime lista de filmes da HotList.
+     *
+     * @param fn O sistema FilmNow a ser manipulado.
+     */
     private static void exibeHot(FilmNow fn) {
         Filme[] filmes = fn.getHot();
         for (int i = 0; i < filmes.length; i++) {
@@ -159,6 +163,12 @@ public class MainFilmNow {
         }
     }
 
+    /**
+     * Cadastra um filme na HotList.
+     *
+     * @param fn O sistema FilmNow a ser manipulado.
+     * @param scanner Scanner para pedir informações do contato.
+     */
     private static void atribuiHot(FilmNow fn, Scanner scanner){
         System.out.print("\nFilme> ");
         int filme = scanner.nextInt();
@@ -168,6 +178,12 @@ public class MainFilmNow {
         System.out.println(fn.cadastraHOT(filme, posicao));
     }
 
+    /**
+     * Remove um filme na HotList.
+     *
+     * @param fn O sistema FilmNow a ser manipulado.
+     * @param scanner Scanner para pedir informações do contato.
+     */
     private static void removeHot(FilmNow fn, Scanner scanner){
         System.out.print("\nPosicao> ");
         int posicao = scanner.nextInt();

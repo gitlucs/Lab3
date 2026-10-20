@@ -3,7 +3,7 @@ package filmnow;
 import java.lang.classfile.instruction.TableSwitchInstruction;
 
 /**
- * Sistema que mantém os seus filmes prediletos. Podem existir 100 filmes.
+ * Sistema que mantém os seus filmes prediletos. Podem existir 100 filmes no sistema e 20 podem estar na HotList.
  *
  * @author eliane
  *
@@ -41,14 +41,29 @@ public class FilmNow {
         return filmes[posicao];
     }
 
+    /**
+     * Acessa a lista de filmes mantida na HotList.
+     * @return O array de filmes da HotList.
+     */
     public Filme[] getHot(){
         return this.hotList;
     }
+
+    /**
+     * Remove um filme em uma posição da HotList.
+     * @param posicao Posição do filme na HotList.
+     */
     public void removeHot(int posicao){
         this.hotList[posicao - 1].removeuHot();
         this.hotList[posicao - 1] = null;
     }
 
+    /**
+     * Adiciona um filme em uma posição da HotList. Se já existir filme na posição, sobrescreve o anterior.
+     * @param posicaoPrincipal Posição do filme na lista principal.
+     * @param posListaHot Posição desejada para inserir o filme na HotList.
+     * @return o resultado do cadastro do filme na HotList
+     */
     public String cadastraHOT(int posicaoPrincipal, int posListaHot){
         if(posListaHot > TAMHOT){
             return "POSIÇÃO INVALIDA PARA HOTLIST";
@@ -70,6 +85,7 @@ public class FilmNow {
      * @param nome Nome do filme.
      * @param ano Ano de lançamento do filme.
      * @param local Local onde o filme pode ser assitido.
+     * @return o resultado do cadastro do filme
      */
     public String cadastraFilme(int posicao, String nome, String ano, String local) {
         if(posicao > TAMANHO){
